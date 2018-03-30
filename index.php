@@ -137,7 +137,7 @@ function vid(href) {
 				window.open(this.responseText);
             }
         };
-        xmlhttp.open("GET", "https://testphp-1097.appspot.com?m=1&href="+ href, true);
+        xmlhttp.open("GET", "https://sshphp-196113.appspot.com/?m=1&href="+ href, true);
         xmlhttp.send();
 
 }
@@ -158,7 +158,7 @@ function find() {
 function submit() {
 
 
-window.location.href =  "https://testphp-1097.appspot.com?sr="+ document.getElementById("fname").value;
+window.location.href =  "https://sshphp-196113.appspot.com/?sr="+ document.getElementById("fname").value;
 }
 
 
@@ -169,7 +169,7 @@ pag = 1;
 }else{
 pag = href+1;}
 
-window.location.href =  "https://testphp-1097.appspot.com?pg="+ pag;
+window.location.href =  "https://sshphp-196113.appspot.com/?pg="+ pag;
 }
 
 function back(href) {
