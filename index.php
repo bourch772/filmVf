@@ -17,38 +17,22 @@
 
 <body>
 	<div id="view">
-		<header id="header">
-			
-    <input type="text" id="fname" name="firstname" >
-
-    <button onclick="Submit()" value="search">search</button>
-  
+		<header>
+			<h1>IFLIX</h1>
 		</header>
 	
+		<div id="container">
 <?php
 include('simple_html_dom.php');
 $pg=1;
-$html = '';
 if(isset($_GET['pg']))
 {
 $pg=$_GET['pg'];
+}
+
+
 $html = file_get_html('https://vf.k-streaming.com/page/'.$pg);
-
-}else if(isset($_GET['sr']))
-{
-$sr=$_GET['sr'];
-$html = file_get_html('https://vf.k-streaming.com/?s='.$sr);
-
-}
-else{
-	
-$html = file_get_html('https://vf.k-streaming.com/');
-	
-}
-
-
-
-$cl = 0;
+$cl = rand(0, 100);
 $x = '';
 foreach($html->find('.moviefilm') as $a) {
 	if (strpos($a, 'Saison') == false) {
@@ -56,61 +40,32 @@ foreach($html->find('.moviefilm') as $a) {
 	
     $img = $a->find('img')[0];
 	$cl = $cl+10;
-	$x = $x.'<button onclick="vid(\''.$element->href.'\')" style="width: 100%;     font-weight: bold; background-color: hsl('.$cl.', 63%, 81%);" ><a  ><img src="'.$img->src.'" alt="thumb"  style="width: 60%; height: auto;" ><h2>'.$img->alt.'</h2></a></button>';
+	$x = $x.'<button onclick="vid(\''.$element->href.'\')" style="width: 100%; background-color: hsl('.$cl.', 63%, 81%);" class="clearfix"><a  ><img src="'.$img->src.'" alt="thumb"  style="width: 80%; height: auto;" class="thumbnail"><h2>'.$img->alt.'</h2></a></button>';
 }}
-echo '<ul style="text-align: -webkit-center;     font-weight: bold;">'.$x.'</ul><button class="button" onclick="back('.$pg.')" style=" width: 28%; left: 0;     font-weight: bold;" >BACK</button><button class="button" onclick="next('.$pg.')" style=" width: 28%; right: 0;     font-weight: bold;">NEXT</button>';
+echo '<ul style="text-align: -webkit-center; ">'.$x.'</ul></div><footer><button class="button" onclick="('.$pg.')" style=" width: 28%; left: 0;" >BACK</button><button class="button" onclick="('.$pg.')" style=" width: 28%; right: 0; ">NEXT</button><button class="button" id="pg" style=" width: 30%; left: 35%;">'.$pg.'</button>';
 
 
 
 ?>
-<button class="button" alt="0" onclick="find(this)" style=" width: 30%; left: 35%;  font-weight: bold;">search</button>
+			
+
+		</footer>
 <style>
-input[type=text], select {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-input[type=submit] {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-input[type=submit]:hover {
-    background-color: #45a049;
-}
-
-div {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-}
-
 .button {
  
 max-width: 100%; 
 display: block; 
 position: fixed; 
-bottom: 0; 
-z-index: 9999; 
+
 height: 7%;
   padding: 15px 25px;
-  
+
   cursor: pointer;
   text-align: center;
   text-decoration: none;
   outline: none;
-  background-color: #4CAF50;
+  color: white;
+  background-color: red;
   border: none;
   border-radius: 5px;
   box-shadow: 0 9px blue;
@@ -123,11 +78,9 @@ height: 7%;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
-</style>		
+</style>		</div>
 	</div>
 <script type="text/javascript">
- var x = document.getElementById("header"); 
-x.style.display = "none";
 function vid(href) {
 
  var xmlhttp = new XMLHttpRequest();
@@ -137,30 +90,10 @@ function vid(href) {
 				window.open(this.responseText);
             }
         };
-        xmlhttp.open("GET", "https://sshphp-196113.appspot.com/?m=1&href="+ href, true);
+        xmlhttp.open("GET", "?m=1&href="+ href, true);
         xmlhttp.send();
 
 }
-
-
-function find() {
-	
-   
-  if ( x.style.display == "none") {
-        x.style.display = "block";
-    } else {
-         x.style.display = "none";
-    } 
-}
-
-
-
-function submit() {
-
-
-window.location.href =  "https://sshphp-196113.appspot.com/?sr="+ document.getElementById("fname").value;
-}
-
 
 function next(href) {
 var pag = '';
@@ -169,7 +102,8 @@ pag = 1;
 }else{
 pag = href+1;}
 
-window.location.href =  "https://sshphp-196113.appspot.com/?pg="+ pag;
+window.location.href =  "?pg="+ pag;
+
 }
 
 function back(href) {
@@ -178,7 +112,7 @@ if(href == 1){
 pag = 222;
 }else{
 pag = href-1;}
-window.location.href =  "https://testphp-1097.appspot.com?pg="+ pag;
+window.location.href =  "?pg="+ pag;
 }
 
 </script>
