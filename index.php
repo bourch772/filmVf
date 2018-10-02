@@ -42,7 +42,7 @@ foreach($html->find('.moviefilm') as $a) {
 	$cl = $cl+10;
 	$x = $x.'<button onclick="vid(\''.$element->href.'\')" style="width: 100%; background-color: hsl('.$cl.', 63%, 81%);" class="clearfix"><a  ><img src="'.$img->src.'" alt="thumb"  style="width: 80%; height: auto;" class="thumbnail"><h2>'.$img->alt.'</h2></a></button>';
 }}
-echo '<ul style="text-align: -webkit-center; ">'.$x.'</ul></div><footer><button class="button" onclick="('.$pg.')" style=" width: 28%; left: 0;" >BACK</button><button class="button" onclick="('.$pg.')" style=" width: 28%; right: 0; ">NEXT</button><button class="button" id="pg" style=" width: 30%; left: 35%;">'.$pg.'</button>';
+echo '<ul style="text-align: -webkit-center; ">'.$x.'</ul></div><footer><button class="button" onclick="('.$pg.')" style=" width: 28%; left: 0;" >BACKkk</button><button class="button" onclick="('.$pg.')" style=" width: 28%; right: 0; ">NEXT</button><button class="button" id="pg" style=" width: 30%; left: 35%;">'.$pg.'</button>';
 
 
 
